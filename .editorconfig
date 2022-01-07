@@ -3,8 +3,8 @@
 # top-most EditorConfig file
 root = true
 
-# 2-space indentation for all JavaScript, CSS, and Markdown files
-[*.{ts,tsx,js,jsx,json,css,md}]
+# 2-space indentation for all JavaScript, CSS, Markdown, and text files
+[*.{ts,tsx,js,jsx,json,css,md,txt}]
 indent_style = space
 indent_size = 2
 insert_final_newline = true
