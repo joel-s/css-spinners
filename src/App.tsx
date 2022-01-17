@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import styled, {createGlobalStyle} from "styled-components";
 import {CycloneSpinner} from "./spinners/CycloneSpinner";
 import FlippableCard from "./card/FlippableCard";
+import {ConvergenceSpinner} from "./spinners/ConvergenceSpinner";
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -23,13 +24,18 @@ const Background = styled.div`
 `;
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       <GlobalStyle />
     <Background>
-      <FlippableCard isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+      <FlippableCard xOffset={-1} yOffset={-1} >
         <CycloneSpinner />
+      </FlippableCard>
+      <FlippableCard xOffset={-1} yOffset={1} >
+        <ConvergenceSpinner speed={10} bidirectional={false} />
+      </FlippableCard>
+      <FlippableCard xOffset={1} yOffset={1} >
+        <ConvergenceSpinner speed={3} bidirectional={true} />
       </FlippableCard>
     </Background>
     </>

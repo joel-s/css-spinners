@@ -3,17 +3,20 @@ import {range} from "../utils/util";
 
 type RingProps = {
   i: number,
+  speed: number,
   bidirectional: boolean,
 };
 
 /**
  * Returns a ring that spins back and forth
  * @param i Number between 0 and 30, inclusive
+ * @param speed Sets the maximum number of turns for each arc
+ * @param bidirectional If true, some arcs should rotate counterclockwise
  * @constructor
  */
-export function Ring({i, bidirectional}: RingProps): JSX.Element {
+export function Ring({i, speed, bidirectional}: RingProps): JSX.Element {
   const modulus = i % 3;
-  const numTurns = Math.floor((Math.random() +.5) * 20);
+  const numTurns = Math.floor((Math.random()/2 +.5) * speed);
   const turns = (!bidirectional || Math.random() > .5) ? numTurns : -numTurns;
   const startAngle = (i % 2) ? 180 : 0;
   const finalAngle = turns * 360 + modulus * 120;
@@ -25,14 +28,17 @@ export function Ring({i, bidirectional}: RingProps): JSX.Element {
     0% {
       transform: rotate(${startAngle}deg);
     }
-    10% {
-      transform: rotate(${startAngle}deg);
+    40% {
+      transform: rotate(${finalAngle}deg);
+    }
+    50% {
+      transform: rotate(${finalAngle}deg);
     }
     90% {
-      transform: rotate(${finalAngle}deg);
+      transform: rotate(${startAngle}deg);
     }
     100% {
-      transform: rotate(${finalAngle}deg);
+      transform: rotate(${startAngle}deg);
     }
   `;
 
@@ -55,13 +61,16 @@ export function Ring({i, bidirectional}: RingProps): JSX.Element {
 }
 
 type ConvergenceSpinnerProps = {
+  speed: number,
   bidirectional: boolean,
 };
 
-export function ConvergenceSpinner({bidirectional} : ConvergenceSpinnerProps): JSX.Element {
+export function ConvergenceSpinner({bidirectional, speed} : ConvergenceSpinnerProps): JSX.Element {
   return (
     <>
-      {range(0, 30, 1).map(i => <Ring i={i} bidirectional={bidirectional} key={i} />)}
+      {range(0, 30, 1).map(
+        i => <Ring i={i} speed={speed} bidirectional={bidirectional} key={i} />
+      )}
     </>
   );
 }
