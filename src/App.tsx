@@ -6,7 +6,7 @@ import {ConvergenceSpinner} from "./spinners/ConvergenceSpinner";
 
 const GlobalStyle = createGlobalStyle`
   html, body {
-    background-color: #333;
+    background-color: hsl(200deg, 80%, 20%);
   }
 `;
 
@@ -18,7 +18,6 @@ const Background = styled.div`
   right: 0;
   width: 100vmin;
   margin: auto;
-  background-color: black;
   overflow: hidden;
   perspective: 200vmin;
 `;
@@ -35,7 +34,7 @@ function App() {
         <ConvergenceSpinner speed={10} bidirectional={false} />
       </FlippableCard>
       <FlippableCard xOffset={1} yOffset={1} >
-        <ConvergenceSpinner speed={3} bidirectional={true} />
+        <ConvergenceSpinner speed={2} bidirectional={false} />
       </FlippableCard>
     </Background>
     </>

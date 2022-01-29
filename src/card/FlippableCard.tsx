@@ -32,7 +32,7 @@ const Back = styled(Face)`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: hsl(200deg, 100%, 45%);
+  background-color: hsl(200deg, 100%, 60%);
 `;
 
 export default function FlippableCard({ children, xOffset, yOffset } :

@@ -7,6 +7,12 @@ type RingProps = {
   bidirectional: boolean,
 };
 
+const COLORS = [
+  "hsl(25deg, 100%, 50%)",
+  "hsl(200deg, 100%, 60%)",
+  "hsl(200deg, 80%, 20%)",
+];
+
 /**
  * Returns a ring that spins back and forth
  * @param i Number between 0 and 30, inclusive
@@ -20,8 +26,7 @@ export function Ring({i, speed, bidirectional}: RingProps): JSX.Element {
   const turns = (!bidirectional || Math.random() > .5) ? numTurns : -numTurns;
   const startAngle = (i % 2) ? 180 : 0;
   const finalAngle = turns * 360 + modulus * 120;
-  const hue = 220 + modulus * 60;
-  const lightness = i + 20;
+  const color = COLORS[modulus];
   const size = i * 2.5 + 3;
 
   const spin = keyframes`
@@ -52,9 +57,8 @@ export function Ring({i, speed, bidirectional}: RingProps): JSX.Element {
     border-radius: 50%;
     width: ${size}vmin;
     height: ${size}vmin;
-    /*border-right: 2vmin solid hsl(${hue}, 100%, ${lightness}%);*/
-    border-top: 2vmin solid hsl(${hue}, 70%, ${lightness}%);
-    animation: 15s ease-in-out infinite alternate ${spin};
+    border-top: 2vmin solid ${color};
+    animation: 15s ease-in-out infinite ${spin};
   `;
 
   return <RingDiv />;
