@@ -3,6 +3,7 @@ import styled, {createGlobalStyle} from "styled-components";
 import {CycloneSpinner} from "./spinners/CycloneSpinner";
 import FlippableCard from "./card/FlippableCard";
 import {ConvergenceSpinner} from "./spinners/ConvergenceSpinner";
+import {CubicSpinner} from "./spinners/CubicSpinner";
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -29,6 +30,9 @@ function App() {
     <Background>
       <FlippableCard xOffset={-1} yOffset={-1} >
         <CycloneSpinner />
+      </FlippableCard>
+      <FlippableCard xOffset={1} yOffset={-1} >
+        <CubicSpinner speed={.5} />
       </FlippableCard>
       <FlippableCard xOffset={-1} yOffset={1} >
         <ConvergenceSpinner speed={10} bidirectional={false} />
