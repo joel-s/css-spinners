@@ -24,8 +24,8 @@ export function Ring({i, speed}: RingProps): JSX.Element {
   const color = COLORS[modulus];
   const size = i * 2.5 + 3;
 
-  const bezierLowXValue = (i * .02) + modulus * .15;
-  const bezierHighXValue = bezierLowXValue + .1;
+  const bezierLowXValue = (i * .01) + modulus * .25;
+  const bezierHighXValue = bezierLowXValue + .15;
 
   const spin = keyframes`
     0% {
@@ -43,7 +43,7 @@ export function Ring({i, speed}: RingProps): JSX.Element {
     left: 0;
     right: 0;
     margin: auto;
-    border-radius: 50%;
+    border-radius: 40%;
     width: ${size}vmin;
     height: ${size}vmin;
     border-top: 2vmin solid ${color};
