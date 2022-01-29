@@ -17,8 +17,6 @@ const Background = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100vmin;
-  margin: auto;
   overflow: hidden;
   perspective: 200vmin;
 `;

@@ -35,30 +35,46 @@ const Back = styled(Face)`
   background-color: hsl(200deg, 100%, 60%);
 `;
 
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: white;
+  z-index: 50;
+`;
+
 export default function FlippableCard({ children, xOffset, yOffset } :
     { children: JSX.Element, xOffset: number, yOffset: number }) {
   const [isOpen, setIsOpen] = useState(false);
   const flip = () => setIsOpen(!isOpen);
 
   return (
-    <Card onClick={flip} style={{
-      transform: isOpen
-        ? 'translateX(0) translateY(0) translateZ(0)'
-        : `translateX(${xOffset*70}vmin) translateY(${yOffset*70}vmin) translateZ(-500vmin)`,
-      zIndex: isOpen ? 100 : 0,
-    }}>
-      <Front style={{
+    <>
+      <Card onClick={flip} style={{
         transform: isOpen
-          ? 'rotateY(0deg)'
-          : 'rotateY(180deg)',
+          ? 'translateX(0) translateY(0) translateZ(0)'
+          : `translateX(${xOffset*70}vmin) translateY(${yOffset*70}vmin) translateZ(-500vmin)`,
+        zIndex: isOpen ? 100 : 0,
       }}>
-        {children}
-      </Front>
-      <Back style={{
-        transform: isOpen
-          ? 'rotateY(-180deg)'
-          : 'rotateY(0deg)',
-      }} />
-    </Card>
+        <Front style={{
+          transform: isOpen
+            ? 'rotateY(0deg)'
+            : 'rotateY(180deg)',
+        }}>
+          {children}
+        </Front>
+        <Back style={{
+          transform: isOpen
+            ? 'rotateY(-180deg)'
+            : 'rotateY(0deg)',
+        }} />
+      </Card>
+      {isOpen && <Background role="button" onClick={flip} />}
+    </>
   );
 }
