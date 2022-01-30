@@ -1,5 +1,5 @@
 import React from "react";
-import styled, {createGlobalStyle} from "styled-components";
+import styled, {createGlobalStyle, keyframes} from "styled-components";
 import {CycloneSpinner} from "./spinners/CycloneSpinner";
 import FlippableCard from "./card/FlippableCard";
 import {ConvergenceSpinner} from "./spinners/ConvergenceSpinner";
@@ -11,6 +11,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const initialFrames = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(10);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 const Background = styled.div`
   position: absolute;
   top: 0;
@@ -19,6 +30,7 @@ const Background = styled.div`
   right: 0;
   overflow: hidden;
   perspective: 200vmin;
+  animation: 0.8s cubic-bezier(0, 0.55, 0.45, 1) ${initialFrames};
 `;
 
 function App() {
