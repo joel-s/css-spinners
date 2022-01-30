@@ -24,7 +24,7 @@ export function Ring({i, speed}: RingProps): JSX.Element {
   const color = COLORS[modulus];
   const size = i * 2.5 + 3;
 
-  const bezierLowXValue = (i * .01) + modulus * .25;
+  const bezierLowXValue = (i * .01) + modulus * .22;
   const bezierHighXValue = bezierLowXValue + .15;
 
   const spin = keyframes`
@@ -32,7 +32,7 @@ export function Ring({i, speed}: RingProps): JSX.Element {
       transform: rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+      transform: rotate(1080deg);
     }
   `;
 
@@ -48,7 +48,7 @@ export function Ring({i, speed}: RingProps): JSX.Element {
     height: ${size}vmin;
     border-top: 2vmin solid ${color};
     border-left: 2vmin solid ${color};
-    animation: 3s cubic-bezier(${bezierLowXValue}, 0, ${bezierHighXValue}, 1) infinite ${spin};
+    animation: 12s cubic-bezier(${bezierLowXValue}, 0, ${bezierHighXValue}, 1) infinite ${spin};
   `;
 
   return <RingDiv />;
