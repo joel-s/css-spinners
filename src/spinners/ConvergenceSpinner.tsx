@@ -5,13 +5,8 @@ type RingProps = {
   i: number,
   speed: number,
   bidirectional: boolean,
+  colors: string[],
 };
-
-const COLORS = [
-  "hsl(25deg, 100%, 50%)",
-  "hsl(200deg, 100%, 60%)",
-  "hsl(200deg, 80%, 20%)",
-];
 
 /**
  * Returns a ring that spins back and forth
@@ -20,13 +15,13 @@ const COLORS = [
  * @param bidirectional If true, some arcs should rotate counterclockwise
  * @constructor
  */
-export function Ring({i, speed, bidirectional}: RingProps): JSX.Element {
+export function Ring({i, speed, bidirectional, colors}: RingProps): JSX.Element {
   const modulus = i % 3;
   const numTurns = Math.floor((Math.random()/2 +.5) * speed);
   const turns = (!bidirectional || Math.random() > .5) ? numTurns : -numTurns;
   const startAngle = (i % 2) ? 180 : 0;
   const finalAngle = turns * 360 + modulus * 120;
-  const color = COLORS[modulus];
+  const color = colors[modulus];
   const size = i * 2.5 + 3;
 
   const spin = keyframes`
@@ -67,13 +62,16 @@ export function Ring({i, speed, bidirectional}: RingProps): JSX.Element {
 type ConvergenceSpinnerProps = {
   speed: number,
   bidirectional: boolean,
+  colors: string[],
 };
 
-export function ConvergenceSpinner({bidirectional, speed} : ConvergenceSpinnerProps): JSX.Element {
+export function ConvergenceSpinner(
+  {bidirectional, speed, colors} : ConvergenceSpinnerProps
+): JSX.Element {
   return (
     <>
       {range(0, 30, 1).map(
-        i => <Ring i={i} speed={speed} bidirectional={bidirectional} key={i} />
+        i => <Ring i={i} speed={speed} bidirectional={bidirectional} key={i} colors={colors} />
       )}
     </>
   );

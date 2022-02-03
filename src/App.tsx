@@ -11,6 +11,18 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const COLORS_WITH_ORANGE = [
+  "hsl(25deg, 100%, 50%)",
+  "hsl(200deg, 100%, 60%)",
+  "hsl(200deg, 80%, 20%)",
+];
+const COLORS_ONLY_BLUE = [
+  "hsl(200deg, 80%, 20%)",
+  "hsl(200deg, 90%, 40%)",
+  "hsl(200deg, 100%, 60%)",
+];
+
+
 const initialFrames = keyframes`
   0% {
     opacity: 0;
@@ -45,10 +57,10 @@ function App() {
         <CubicSpinner speed={.5} />
       </FlippableCard>
       <FlippableCard xOffset={-1} yOffset={1} >
-        <ConvergenceSpinner speed={10} bidirectional={false} />
+        <ConvergenceSpinner speed={10} bidirectional={false} colors={COLORS_WITH_ORANGE} />
       </FlippableCard>
       <FlippableCard xOffset={1} yOffset={1} >
-        <ConvergenceSpinner speed={2} bidirectional={false} />
+        <ConvergenceSpinner speed={2} bidirectional={false} colors={COLORS_ONLY_BLUE} />
       </FlippableCard>
     </Background>
     </>
