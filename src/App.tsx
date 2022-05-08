@@ -8,6 +8,7 @@ import {CubicSpinner} from "./spinners/CubicSpinner";
 const GlobalStyle = createGlobalStyle`
   html, body {
     background-color: hsl(200deg, 80%, 20%);
+    overflow: hidden;
   }
 `;
 
@@ -49,20 +50,20 @@ function App() {
   return (
     <>
       <GlobalStyle />
-    <Background>
-      <FlippableCard xOffset={-1} yOffset={-1} >
-        <CycloneSpinner />
-      </FlippableCard>
-      <FlippableCard xOffset={1} yOffset={-1} >
-        <CubicSpinner speed={.5} />
-      </FlippableCard>
-      <FlippableCard xOffset={-1} yOffset={1} >
-        <ConvergenceSpinner speed={10} bidirectional={false} colors={COLORS_WITH_ORANGE} />
-      </FlippableCard>
-      <FlippableCard xOffset={1} yOffset={1} >
-        <ConvergenceSpinner speed={2} bidirectional={false} colors={COLORS_ONLY_BLUE} />
-      </FlippableCard>
-    </Background>
+      <Background>
+        <FlippableCard xOffset={-1} yOffset={-1} >
+          <CycloneSpinner />
+        </FlippableCard>
+        <FlippableCard xOffset={1} yOffset={-1} >
+          <CubicSpinner speed={.5} />
+        </FlippableCard>
+        <FlippableCard xOffset={-1} yOffset={1} >
+          <ConvergenceSpinner speed={10} bidirectional={false} colors={COLORS_WITH_ORANGE} />
+        </FlippableCard>
+        <FlippableCard xOffset={1} yOffset={1} >
+          <ConvergenceSpinner speed={2} bidirectional={false} colors={COLORS_ONLY_BLUE} />
+        </FlippableCard>
+      </Background>
     </>
   );
 }
