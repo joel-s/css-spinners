@@ -23,18 +23,6 @@ const COLORS_ONLY_BLUE = [
   "hsl(200deg, 100%, 60%)",
 ];
 
-
-const initialFrames = keyframes`
-  0% {
-    opacity: 0;
-    transform: scale(10);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
-
 const Background = styled.div`
   position: absolute;
   top: 0;
@@ -43,7 +31,6 @@ const Background = styled.div`
   right: 0;
   overflow: hidden;
   perspective: 200vmin;
-  animation: 0.8s cubic-bezier(0, 0.55, 0.45, 1) ${initialFrames};
 `;
 
 function App() {

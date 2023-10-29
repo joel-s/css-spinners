@@ -63,7 +63,7 @@ export default function FlippableCard({ children, xOffset, yOffset } :
         transform: isOpen
           ? 'translateX(0) translateY(0) translateZ(0)'
           : `translateX(${xOffset*70}vmin) translateY(${yOffset*70}vmin) translateZ(-500vmin)`,
-        zIndex: isOpen ? 100 : 0,
+        zIndex: isOpen ? 100 : 1,
       }}>
         <Front style={{
           transform: isOpen
