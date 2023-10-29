@@ -51,11 +51,15 @@ const Background = styled.div`
 export default function FlippableCard({ children, xOffset, yOffset } :
     { children: JSX.Element, xOffset: number, yOffset: number }) {
   const [isOpen, setIsOpen] = useState(false);
-  const flip = () => setIsOpen(!isOpen);
+  const [inTransition, setInTransition] = useState(false)
+  const flip = () => {
+    setInTransition(true);
+    setIsOpen(!isOpen);
+  }
 
   return (
     <>
-      <Card onClick={flip} onTransitionEnd={(e) => console.log(e)} style={{
+      <Card onClick={flip} onTransitionEnd={() => setInTransition(false)} style={{
         transform: isOpen
           ? 'translateX(0) translateY(0) translateZ(0)'
           : `translateX(${xOffset*70}vmin) translateY(${yOffset*70}vmin) translateZ(-500vmin)`,
@@ -66,7 +70,7 @@ export default function FlippableCard({ children, xOffset, yOffset } :
             ? 'rotateY(0deg)'
             : 'rotateY(180deg)',
         }}>
-          {isOpen && children}
+          {(isOpen || inTransition) && children}
         </Front>
         <Back style={{
           transform: isOpen
