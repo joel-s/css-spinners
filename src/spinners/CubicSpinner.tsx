@@ -17,18 +17,15 @@ const spin = keyframes`
   }
 `;
 
+type RingProps = { $i: number, $color: string, $size: number, $bezierLowX: number };
+
 /**
  * Returns a ring that spins back and forth
  * @param $i Number between 0 and 30, inclusive
  * @param $speed Sets the maximum number of turns for each arc
  * @param $bidirectional If true, some arcs should rotate counterclockwise
  */
-const Ring = styled.div.attrs<{ $i: number, $speed: number }>((props) => ({
-  $i: props.$i,
-  $color: COLORS[props.$i % 3],
-  $size: props.$i * 2.5 + 3,
-  $bezierLowX: (props.$i * .01) + (props.$i % 3) * .22,
-}))`
+const Ring = styled.div<RingProps>`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -49,12 +46,8 @@ type CubicSpinnerProps = {
   speed: number,
 };
 
-export function CubicSpinner({speed} : CubicSpinnerProps): ReactElement {
-  return (
-    <>
-      {range(0, 30, 1).map(
-        i => <Ring $i={i} $speed={speed} key={i} />
-      )}
-    </>
+export function CubicSpinner({speed} : CubicSpinnerProps): ReactElement[] {
+  return range(0, 30, 1).map(
+    i => <Ring $i={i} $color={COLORS[i % 3]} $size={i * 2.5 + 3} $bezierLowX={(i * .01) + (i % 3) * .22} key={i} />
   );
 }
