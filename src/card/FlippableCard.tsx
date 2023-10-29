@@ -55,7 +55,7 @@ export default function FlippableCard({ children, xOffset, yOffset } :
 
   return (
     <>
-      <Card onClick={flip} style={{
+      <Card onClick={flip} onTransitionEnd={(e) => console.log(e)} style={{
         transform: isOpen
           ? 'translateX(0) translateY(0) translateZ(0)'
           : `translateX(${xOffset*70}vmin) translateY(${yOffset*70}vmin) translateZ(-500vmin)`,
@@ -66,7 +66,7 @@ export default function FlippableCard({ children, xOffset, yOffset } :
             ? 'rotateY(0deg)'
             : 'rotateY(180deg)',
         }}>
-          {children}
+          {isOpen && children}
         </Front>
         <Back style={{
           transform: isOpen
