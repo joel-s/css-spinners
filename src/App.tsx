@@ -1,5 +1,5 @@
 import React from "react";
-import styled, {createGlobalStyle, keyframes} from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 import {CycloneSpinner} from "./spinners/CycloneSpinner";
 import FlippableCard from "./card/FlippableCard";
 import {ConvergenceSpinner} from "./spinners/ConvergenceSpinner";
