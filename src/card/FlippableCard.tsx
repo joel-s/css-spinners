@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useState} from "react";
+import {ReactElement, useState} from "react";
 
 const Card = styled.div`
   position: absolute;
@@ -13,6 +13,7 @@ const Card = styled.div`
   perspective: 200vmin;
   transition: transform 1000ms, z-index 1000ms;
   will-change: transform, z-index;
+  cursor: pointer;
 `;
 
 const Face = styled.div`
@@ -49,7 +50,7 @@ const Background = styled.div`
 `;
 
 export default function FlippableCard({ children, xOffset, yOffset } :
-    { children: JSX.Element, xOffset: number, yOffset: number }) {
+    { children: ReactElement, xOffset: number, yOffset: number }) {
   const [isOpen, setIsOpen] = useState(false);
   const [inTransition, setInTransition] = useState(false)
   const flip = () => {

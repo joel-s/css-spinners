@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type {ReactElement} from "react";
 import styled, {keyframes} from "styled-components";
 import {range} from "../utils/util";
 
@@ -55,7 +55,7 @@ type RingProps = {
  * @param bidirectional If true, some arcs should rotate counterclockwise
  * @constructor
  */
-export function Ring({i, speed, bidirectional, colors}: RingProps): JSX.Element {
+export function Ring({i, speed, bidirectional, colors}: RingProps): ReactElement {
   const modulus = i % 3;
   const numTurns = Math.floor((Math.random()/2 +.5) * speed);
   const turns = (!bidirectional || Math.random() > .5) ? numTurns : -numTurns;
