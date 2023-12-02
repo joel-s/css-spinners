@@ -7,6 +7,7 @@ import {CubicSpinner} from "./spinners/CubicSpinner";
 
 const GlobalStyle = createGlobalStyle`
   html, body {
+    color: white;
     background-color: hsl(200deg, 80%, 20%);
     overflow: hidden;
   }

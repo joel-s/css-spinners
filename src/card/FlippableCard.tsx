@@ -1,6 +1,29 @@
 import styled from "styled-components";
 import {ReactElement, useState} from "react";
 
+function isFirefox(): boolean {
+  return /Gecko\//.test(navigator.userAgent);
+}
+
+/**
+ * We need this invisible clicakble area in Firefox, since Firefox won't let
+ * people click on the cards when they are "far away" aka "small", due to their
+ * translateZ() transform.
+ */
+const InvisibleClickArea = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90vmin;
+  width: 90vmin;
+  margin: auto;
+  border-radius: 30px;
+  z-index: 60;
+  cursor: pointer;
+`;
+
 const Card = styled.div`
   position: absolute;
   top: 0;
@@ -60,6 +83,10 @@ export default function FlippableCard({ children, xOffset, yOffset } :
 
   return (
     <>
+      {!isOpen && isFirefox() &&
+        <InvisibleClickArea onClick={flip} style={{
+          transform: `translateX(${xOffset*20}vmin) translateY(${yOffset*20}vmin) scale(.285)`
+        }} />}
       <Card onClick={flip} onTransitionEnd={() => setInTransition(false)} style={{
         transform: isOpen
           ? 'translateX(0) translateY(0) translateZ(0)'
